@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jeetan Work Shop – JWS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======= RESET & BASE ======= */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'Poppins',sans-serif;
+      background:#fff8f0;
+      color:#1a1a1a;
+      overflow-x:hidden;
+    }
+
+    a { text-decoration:none; color:inherit; }
+    img { width:100%; display:block; }
+
+    /* ======= CSS VARIABLES ======= */
+    :root {
+      --yellow:   #FFD700;
+      --orange:   #FF6B00;
+      --red:      #CC0000;
+      --dark:     #1C1C1C;
+      --light-bg: #FFF8F0;
+      --card-bg:  #FFFFFF;
+      --shadow:   0 8px 30px rgba(255,107,0,0.15);
+      --radius:   18px;
+    }
+
+    /* ======= SCROLLBAR ======= */
+    ::-webkit-scrollbar { width:7px; }
+    ::-webkit-scrollbar-track { background:#fff8f0; }
+    ::-webkit-scrollbar-thumb { background:var(--orange); border-radius:10px; }
+
+    /* ================= NAVBAR ================= */
+    header {
+      position:fixed;
+      top:0; width:100%;
+      background:rgba(28,28,28,0.97);
+      backdrop-filter:blur(12px);
+      z-index:1000;
+      box-shadow:0 3px 20px rgba(255,107,0,0.3);
+    }
+
+    .navbar {
+      max-width:1250px;
+      margin:auto;
+      padding:12px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo-circle {
+      width:60px; height:60px;
+      border-radius:50%;
+      border:3px solid var(--yellow);
+      overflow:hidden;
+      flex-shrink:0;
+      background:#fff;
+      box-shadow:0 0 14px rgba(255,215,0,0.5);
+    }
+
+    .logo-circle img { width:100%; height:100%; object-fit:cover; }
+
+    .brand-name h2 {
+      color:var(--yellow);
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:1px;
+      line-height:1.1;
+    }
+
+    .brand-name span {
+      color:#ff9900;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    nav ul {
+      display:flex;
+      gap:22px;
+      list-style:none;
+    }
+
+    nav ul li a {
+      color:#ddd;
+      font-weight:500;
+      font-size:14px;
+      padding:6px 2px;
+      border-bottom:2px solid transparent;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover {
+      color:var(--yellow);
+      border-bottom-color:var(--yellow);
+    }
+
+    .hamburger {
+      display:none;
+      flex-direction:column;
+      cursor:pointer;
+      gap:5px;
+    }
+
+    .hamburger span {
+      width:26px; height:3px;
+      background:var(--yellow);
+      border-radius:3px;
+      transition:0.3s;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      min-height:100vh;
+      background:
+        linear-gradient(135deg,rgba(28,28,28,0.88) 0%,rgba(204,0,0,0.5) 100%),
+        url('workshop-hero.jpg') center/cover no-repeat;
+      background-color:#1C1C1C;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      padding:100px 20px 60px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:'';
+      position:absolute;
+      bottom:0; left:0; right:0;
+      height:120px;
+      background:linear-gradient(to top, var(--light-bg), transparent);
+      z-index:1;
+    }
+
+    .hero-content {
+      position:relative;
+      z-index:2;
+      animation:fadeUp 1.2s ease;
+    }
+
+    .hero-badge {
+      display:inline-block;
+      background:var(--yellow);
+      color:var(--dark);
+      padding:6px 20px;
+      border-radius:50px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:24px;
+    }
+
+    .hero h1 {
+      font-size:68px;
+      font-weight:800;
+      line-height:1.1;
+      margin-bottom:16px;
+    }
+
+    .hero h1 span { color:var(--yellow); }
+
+    .hero p {
+      font-size:19px;
+      color:#e0d0c0;
+      margin-bottom:38px;
+      max-width:580px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .hero-buttons {
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary {
+      display:inline-block;
+      padding:14px 38px;
+      background:linear-gradient(135deg, var(--yellow), var(--orange));
+      color:#1C1C1C;
+      border-radius:50px;
+      font-weight:700;
+      font-size:15px;
+      transition:0.3s;
+      box-shadow:0 5px 20px rgba(255,107,0,0.45);
+    }
+
+    .btn-primary:hover {
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(255,107,0,0.5);
+    }
+
+    .btn-outline {
+      display:inline-block;
+      padding:14px 38px;
+      border:2px solid var(--yellow);
+      color:var(--yellow);
+      border-radius:50px;
+      font-weight:600;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    .btn-outline:hover {
+      background:var(--yellow);
+      color:#1C1C1C;
+      transform:translateY(-4px);
+    }
+
+    /* ======= STATS BAR ======= */
+    .stats-bar {
+      background:linear-gradient(135deg,var(--orange),#ff4400);
+      padding:28px 20px;
+    }
+
+    .stats-grid {
+      max-width:1000px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      text-align:center;
+    }
+
+    .stat-item h3 {
+      color:var(--yellow);
+      font-size:36px;
+      font-weight:800;
+    }
+
+    .stat-item p {
+      color:#fff;
+      font-size:13px;
+      font-weight:500;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-top:4px;
+    }
+
+    /* ================= SECTION COMMON ================= */
+    section { padding:90px 20px; }
+
+    .container { max-width:1250px; margin:auto; }
+
+    .section-title {
+      text-align:center;
+      margin-bottom:56px;
+    }
+
+    .section-title .eyebrow {
+      display:inline-block;
+      color:var(--orange);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .section-title h2 {
+      font-size:42px;
+      font-weight:800;
+      color:var(--dark);
+      margin-bottom:14px;
+      line-height:1.15;
+    }
+
+    .section-title h2 span { color:var(--orange); }
+
+    .section-title p {
+      color:#666;
+      max-width:560px;
+      margin:auto;
+      line-height:1.7;
+    }
+
+    /* ================= ABOUT ================= */
+    .about-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .about-image {
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    .about-image img { height:460px; object-fit:cover; }
+
+    .about-badge {
+      position:absolute;
+      bottom:24px; right:24px;
+      background:linear-gradient(135deg, var(--yellow), var(--orange));
+      color:#1C1C1C;
+      padding:14px 20px;
+      border-radius:14px;
+      text-align:center;
+      font-weight:800;
+      font-size:13px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .about-badge strong { font-size:28px; display:block; }
+
+    .about-text h3 {
+      font-size:34px;
+      font-weight:800;
+      color:var(--dark);
+      margin-bottom:18px;
+      line-height:1.2;
+    }
+
+    .about-text h3 span { color:var(--orange); }
+
+    .about-text p {
+      line-height:1.85;
+      margin-bottom:18px;
+      color:#555;
+      font-size:15px;
+    }
+
+    .about-points {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .about-point {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:14px;
+      font-weight:500;
+      color:#333;
+    }
+
+    .about-point .dot {
+      width:10px; height:10px;
+      background:var(--orange);
+      border-radius:50%;
+      flex-shrink:0;
+    }
+
+    /* ================= SERVICES ================= */
+    .services { background:#fff3e0; }
+
+    .service-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:28px;
+    }
+
+    .service-card {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:36px 30px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      transition:0.4s;
+      border-bottom:4px solid transparent;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .service-card::before {
+      content:'';
+      position:absolute;
+      top:0; left:0; right:0;
+      height:4px;
+      background:linear-gradient(90deg, var(--yellow), var(--orange));
+    }
+
+    .service-card:hover {
+      transform:translateY(-10px);
+      border-bottom-color:var(--orange);
+      box-shadow:0 16px 40px rgba(255,107,0,0.2);
+    }
+
+    .service-icon {
+      width:80px; height:80px;
+      margin:0 auto 20px;
+      background:linear-gradient(135deg, #fff3cd, #ffe0a3);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      border:3px solid var(--yellow);
+    }
+
+    .service-card h3 {
+      color:var(--dark);
+      font-size:18px;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    .service-card p { color:#666; font-size:14px; line-height:1.7; }
+
+    /* ================= GALLERY ================= */
+    .gallery { background:var(--dark); }
+
+    .gallery .section-title h2 { color:#fff; }
+    .gallery .section-title p { color:#aaa; }
+    .gallery .section-title .eyebrow { color:var(--yellow); }
+
+    /* Filter Tabs */
+    .gallery-filters {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      margin-bottom:40px;
+    }
+
+    .filter-btn {
+      padding:9px 24px;
+      border-radius:50px;
+      border:2px solid #444;
+      background:transparent;
+      color:#aaa;
+      font-family:'Poppins',sans-serif;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      letter-spacing:0.5px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background:linear-gradient(135deg, var(--yellow), var(--orange));
+      border-color:var(--orange);
+      color:#1C1C1C;
+      box-shadow:0 4px 16px rgba(255,107,0,0.4);
+    }
+
+    /* Sub-sections */
+    .gallery-section { margin-bottom:60px; }
+
+    .gallery-section-header {
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:24px;
+      padding-bottom:14px;
+      border-bottom:2px solid #333;
+    }
+
+    .gallery-section-header h3 {
+      color:var(--yellow);
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .gallery-section-header .count {
+      background:var(--orange);
+      color:white;
+      font-size:11px;
+      font-weight:700;
+      padding:3px 10px;
+      border-radius:20px;
+    }
+
+    .gallery-section-icon {
+      font-size:24px;
+    }
+     /* Watermark in image */
+    .gallery-item::before {
+    content: "JEETANS Business";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:14px;
+    }
+
+    .gallery-item {
+      position:relative;
+      overflow:hidden;
+      border-radius:12px;
+      cursor:pointer;
+      aspect-ratio:4/3;
+      background:#2a2a2a;
+      border:2px solid transparent;
+      transition:0.4s;
+    }
+
+    .gallery-item:hover {
+      border-color:var(--yellow);
+      transform:scale(1.03);
+      box-shadow:0 8px 30px rgba(255,215,0,0.3);
+      z-index:2;
+    }
+
+    .gallery-item img {
+      width:100%; height:100%;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .gallery-item:hover img { transform:scale(1.1); }
+
+    .gallery-item .overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(255,107,0,0.85) 0%, transparent 60%);
+      opacity:0;
+      transition:0.4s;
+      display:flex;
+      align-items:flex-end;
+      padding:14px;
+    }
+
+    .gallery-item:hover .overlay { opacity:1; }
+
+    .overlay-text {
+      color:white;
+      font-size:12px;
+      font-weight:600;
+    }
+
+    /* Video items */
+    .gallery-item.video-item::after {
+      content:'▶';
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:48px; height:48px;
+      background:rgba(255,107,0,0.9);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      color:white;
+      text-align:center;
+      line-height:48px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .gallery-item video {
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+
+    /* Load more */
+    .load-more-wrap {
+      text-align:center;
+      margin-top:40px;
+    }
+
+    /* ================= TEAM ================= */
+    .team-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:30px;
+    }
+
+    .team-card {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:0.4s;
+      text-align:center;
+    }
+
+    .team-card:hover { transform:translateY(-10px); }
+
+    .team-image {
+      height:280px;
+      background:linear-gradient(135deg, #fff3cd, #ffe0a3);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:60px;
+      color:var(--orange);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .team-image img {
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+
+    .team-content { padding:24px 20px; }
+
+    .team-content h3 {
+      color:var(--dark);
+      font-size:17px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .team-content p {
+      color:var(--orange);
+      font-size:13px;
+      font-weight:600;
+    }
+
+
+    /* ================= CONTACT ================= */
+    .contact {
+      background:linear-gradient(135deg, #1C1C1C 0%, #2d1200 100%);
+      color:white;
+    }
+
+    .contact .section-title h2 { color:white; }
+    .contact .section-title p { color:#ccc; }
+    .contact .section-title .eyebrow { color:var(--yellow); }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:28px;
+    }
+
+    .contact-card {
+      background:rgba(255,215,0,0.08);
+      border:1px solid rgba(255,215,0,0.2);
+      padding:36px 28px;
+      border-radius:var(--radius);
+      text-align:center;
+      transition:0.4s;
+    }
+
+    .contact-card:hover {
+      background:rgba(255,107,0,0.15);
+      border-color:var(--orange);
+      transform:translateY(-6px);
+    }
+
+    .contact-icon {
+      font-size:38px;
+      margin-bottom:16px;
+    }
+
+    .contact-card h3 {
+      color:var(--yellow);
+      margin-bottom:10px;
+      font-size:16px;
+      font-weight:700;
+    }
+
+    .contact-card p {
+      color:#ddd;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      background:#0d0d0d;
+      color:#999;
+      text-align:center;
+      padding:28px 20px;
+    }
+
+    footer .footer-logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    footer .footer-logo-img {
+      width:44px; height:44px;
+      border-radius:50%;
+      border:2px solid var(--yellow);
+      overflow:hidden;
+      background:#fff;
+    }
+
+    footer .footer-logo-img img { width:100%; height:100%; object-fit:cover; }
+
+    footer h3 {
+      color:var(--yellow);
+      font-size:16px;
+      font-weight:700;
+    }
+
+    footer p { font-size:13px; margin-top:6px; }
+
+    footer a { color:var(--orange); }
+
+
+    /* ================= POPUP MODAL ================= */
+    .media-modal {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.92);
+      backdrop-filter:blur(6px);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+      padding:20px;
+    }
+
+    .media-modal.active { display:flex; animation:fadeIn 0.3s ease; }
+
+    .modal-inner {
+      position:relative;
+      max-width:920px;
+      width:100%;
+      animation:zoomIn 0.35s ease;
+    }
+
+    .modal-inner img,
+    .modal-inner video {
+      width:100%;
+      max-height:86vh;
+      object-fit:contain;
+      border-radius:14px;
+      box-shadow:0 10px 60px rgba(255,107,0,0.35);
+    }
+
+    .modal-close {
+      position:absolute;
+      top:-16px; right:-16px;
+      width:42px; height:42px;
+      background:var(--orange);
+      color:white;
+      border:none;
+      border-radius:50%;
+      font-size:22px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 4px 16px rgba(0,0,0,0.4);
+      transition:0.3s;
+      z-index:10;
+    }
+
+    .modal-close:hover { background:var(--red); transform:scale(1.1); }
+
+    .modal-nav {
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px; height:44px;
+      background:rgba(255,107,0,0.85);
+      color:white;
+      border:none;
+      border-radius:50%;
+      font-size:20px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:0.3s;
+    }
+
+    .modal-nav:hover { background:var(--orange); transform:translateY(-50%) scale(1.1); }
+    .modal-prev { left:-54px; }
+    .modal-next { right:-54px; }
+
+    .modal-caption {
+      text-align:center;
+      color:#ddd;
+      font-size:13px;
+      margin-top:12px;
+      font-weight:500;
+    }
+
+    .modal-counter {
+      position:absolute;
+      bottom:-36px;
+      left:50%;
+      transform:translateX(-50%);
+      color:#aaa;
+      font-size:12px;
+    }
+
+    /* ================= ANIMATIONS ================= */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(40px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to   { opacity:1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform:scale(0.75); opacity:0; }
+      to   { transform:scale(1); opacity:1; }
+    }
+
+    /* ================= HIDDEN class ================= */
+    .gallery-item.hidden { display:none; }
+
+    /* ================= RESPONSIVE ================= */
+    @media(max-width:960px) {
+      .about-grid { grid-template-columns:1fr; }
+      .hero h1 { font-size:44px; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .modal-prev { left:-10px; }
+      .modal-next { right:-10px; }
+    }
+
+    @media(max-width:680px) {
+      .hero h1 { font-size:34px; }
+      nav { display:none; }
+      .hamburger { display:flex; }
+      .section-title h2 { font-size:30px; }
+      .gallery-grid { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+    }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      display:none;
+      position:fixed;
+      top:0; left:0; right:0;
+      background:#1C1C1C;
+      z-index:999;
+      padding:80px 24px 30px;
+      flex-direction:column;
+      gap:0;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .mobile-nav.open { display:flex; animation:fadeIn 0.3s ease; }
+
+    .mobile-nav a {
+      color:#ddd;
+      padding:14px 0;
+      border-bottom:1px solid #333;
+      font-weight:500;
+      font-size:15px;
+    }
+
+    .mobile-nav a:hover { color:var(--yellow); }
+
+    .mobile-close {
+      position:absolute;
+      top:16px; right:20px;
+      background:none;
+      border:none;
+      color:var(--yellow);
+      font-size:32px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<!-- ===== POPUP MODAL ===== -->
+<div id="mediaModal" class="media-modal" onclick="modalBgClose(event)">
+  <div class="modal-inner" id="modalInner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-nav modal-prev" onclick="navigateModal(-1)">&#8249;</button>
+    <button class="modal-nav modal-next" onclick="navigateModal(1)">&#8250;</button>
+    <img id="modalImg" src="" alt="" style="display:none">
+    <video id="modalVideo" controls style="display:none"></video>
+    <iframe id="modalYoutube" style="display:none;width:100%;height:80vh;border:none;border-radius:14px;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<!-- ===== MOBILE NAV ===== -->
+<div id="mobileNav" class="mobile-nav">
+  <button class="mobile-close" onclick="closeMobileNav()">✕</button>
+  <a href="#" onclick="closeMobileNav()">Home</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
+  <a href="#team" onclick="closeMobileNav()">Team</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="navbar">
+
+    <div class="logo">
+      <div class="logo-circle">
+        <img src="Logo.png" alt="">
+      </div>
+      <div class="brand-name">
+        <h2>JEETANS Business</h2>
+       
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="hamburger" onclick="openMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⚙ Since 2000</div>
+    <h1>Your<span> Satisfaction</span><br>is our ultimate Goal</h1>
+    <p>Expert workshop services — trusted by thousands across India.</p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn-primary">Our Services</a>
+      <a href="#gallery" class="btn-outline">View Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <h3>25+</h3>
+      <p>Years Experience</p>
+    </div>
+    <div class="stat-item">
+      <h3>5000+</h3>
+      <p>Work Completed</p>
+    </div>
+    <div class="stat-item">
+      <h3>1000+</h3>
+      <p>Gallery Moments</p>
+    </div>
+    <div class="stat-item">
+      <h3>100%</h3>
+      <p>Satisfaction</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container">
+
+    <div class="about-grid">
+
+      <div class="about-image">
+        <img src="front.jpg" alt="JWS Workshop" style="height:460px;object-fit:cover;">
+        
+      </div>
+
+      <div class="about-text">
+        <div style="color:var(--orange);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;">About JWS</div>
+        <h3>Your Trusted <span>Workshop</span></h3>
+        <p>
+          JEETANS Business i.e Jeetan Work Shop has been serving over 25+ year.With over two decades of hands-on expertise, we are the go-to destination for reliable, high-quality workshop services.
+        Here these are done by experienced staff.
+        </p>
+        
+
+        <div class="about-points">
+          <div class="about-point"><span class="dot"></span>Iron work</div>
+          <div class="about-point"><span class="dot"></span>Glass work</div>
+          <div class="about-point"><span class="dot"></span>Aluminium Work</div>
+          <div class="about-point"><span class="dot"></span>Repairing</div>
+          <div class="about-point"><span class="dot"></span>Agricultural Equipment</div>
+          <div class="about-point"><span class="dot"></span>Steel work</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow">What We Do</span>
+      <h2>Our <span>Services</span></h2>
+      
+    </div>
+
+    <div class="service-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🛠️</div>
+        <h3>General Repairs</h3>
+        <p>Complete diagnosis and repair services for all types of machinery and equipment, handled by our experienced team.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔨</div>
+        <h3>Iron Work</h3>
+        <p>Manufacturing of gate,grill,Mixture machine,Automatic Gate ,fancy gate,shutter
+          ,automatic shutter,sensor gate and other equipment made on customers demand.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">A</div>
+        <h3>Agriculture Equipments</h3>
+        <p>Seed drils,Thresher,Harvestor,Truck(Dala),Cultivator,
+            Plough(9-teeth/3-teeth),Husk collector and many more.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔩</div>
+        <h3>Spare Parts</h3>
+        <p>Genuine and quality-tested spare parts available for a wide range of machines and equipment brands.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">S</div>
+        <h3>Steel Work</h3>
+        <p>All types of gate, grill and railing made on customers demand.
+            Steel letter writing also done here.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🪟</div>
+        <h3>Aluminium & Glass Work</h3>
+        <p>All types of bathroom door,partition and window made on customers demand.
+         
+          All type of glass is present like tuffon, etching. Glass cutting is also done here. </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="gallery" id="gallery">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow">📸 Our Work</span>
+      <h2>Workshop <span style="color:var(--yellow)">Gallery</span></h2>
+      <p>Browse through our work, events, and moments. Click any image or video to view full screen.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="gallery-filters">
+      <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+       <button class="filter-btn" onclick="filterGallery('workshop',this)"> Workshop</button>
+      <button class="filter-btn" onclick="filterGallery('iron',this)"> Iron Work</button>
+      <button class="filter-btn" onclick="filterGallery('steel',this)"> Steel Work</button>
+      <button class="filter-btn" onclick="filterGallery('glass',this)"> Glass Work</button>
+      <button class="filter-btn" onclick="filterGallery('aluminium',this)"> Aluminium Work</button>
+       <button class="filter-btn" onclick="filterGallery('hardware',this)"> Hardware</button>
+      <button class="filter-btn" onclick="filterGallery('mixture',this)"> Mixture Machine</button>
+      <button class="filter-btn" onclick="filterGallery('thresher',this)"> Thresher</button>
+      <button class="filter-btn" onclick="filterGallery('letter',this)"> Letter work</button>
+      <button class="filter-btn" onclick="filterGallery('dala',this)"> Dala(trailor)</button>
+      <button class="filter-btn" onclick="filterGallery('djframe',this)"> DJ Frame</button>
+      <button class="filter-btn" onclick="filterGallery('fancy',this)"> Fancy Gate</button>
+      <button class="filter-btn" onclick="filterGallery('pickup',this)"> Pickup</button>
+      <button class="filter-btn" onclick="filterGallery('steelR',this)"> Steel Railing</button>
+      <button class="filter-btn" onclick="filterGallery('steelGr',this)"> Steel Grill</button>
+      <button class="filter-btn" onclick="filterGallery('steelG',this)"> Steel Gate</button>
+      <button class="filter-btn" onclick="filterGallery('fancyG',this)"> Fancy Grill</button>
+      <button class="filter-btn" onclick="filterGallery('simpleG',this)"> Simple Grill</button>
+      <button class="filter-btn" onclick="filterGallery('septic',this)"> Septic Tank</button>
+      <button class="filter-btn" onclick="filterGallery('waterT',this)"> Water Tank</button>
+      <button class="filter-btn" onclick="filterGallery('mentha',this)"> Mentha</button>
+      <button class="filter-btn" onclick="filterGallery('simpleGa',this)"> Simple Gate</button>
+      <button class="filter-btn" onclick="filterGallery('laserC',this)"> Laser Cutting</button>
+      <button class="filter-btn" onclick="filterGallery('funeralb',this)"> Funeral Bier</button>
+      <button class="filter-btn" onclick="filterGallery('equipment',this)"> Equipments </button>
+      <button class="filter-btn" onclick="filterGallery('events',this)">🎉 Events</button>   
+      <button class="filter-btn" onclick="filterGallery('videos',this)">🎬 Videos</button>
+    </div>
+
+    <!-- ===== SUBSECTION:Workshop Machine ===== -->
+    <div class="gallery-section" data-section="workshop">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Workshop</h3>
+        <span class="count">120+ Photos</span>
+      </div>
+       <div class="gallery-grid" id="grid-workshop"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Iron Work ===== -->
+    <div class="gallery-section" data-section="iron">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Iron Work</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+        <div class="gallery-grid" id="grid-iron"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Steel Work ===== -->
+    <div class="gallery-section" data-section="steel">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Steel Work</h3>
+        <span class="count">100+ Photos</span>
+      </div>
+       <div class="gallery-grid" id="grid-steel"></div>
+ 
+    </div>
+    
+    <!-- ===== SUBSECTION: glass Work ===== -->
+    <div class="gallery-section" data-section="glass">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Glass Work</h3>
+        <span class="count">60+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-glass"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: aluminium work ===== -->
+    <div class="gallery-section" data-section="aluminium">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Aluminium work</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-aluminium"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: hardware ===== -->
+    <div class="gallery-section" data-section="hardware">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Hardware</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-hardware"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Mixture Machine ===== -->
+    <div class="gallery-section" data-section="mixture">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Mixture Machine</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-mixture"></div>
+    </div>
+
+     <!-- ===== SUBSECTION: Thresher ===== -->
+    <div class="gallery-section" data-section="thresher">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Thresher</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-thresher"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Letter Work ===== -->
+    <div class="gallery-section" data-section="letter">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Letter Work</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-letter"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Dala(Trailor) ===== -->
+    <div class="gallery-section" data-section="dala">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Dala(Trailor)</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-dala"></div>
+    </div>
+
+
+   <!-- ===== SUBSECTION: DJ Frame ===== -->
+    <div class="gallery-section" data-section="djframe">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>DJ Frame</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-djframe"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Fancy Gate ===== -->
+    <div class="gallery-section" data-section="fancy">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Fancy Gate</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-fancy"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Pickup ===== -->
+    <div class="gallery-section" data-section="pickup">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Pickup</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-pickup"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Steel Railing ===== -->
+    <div class="gallery-section" data-section="steelR">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Steel Railing</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-steelR"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Steel Grill ===== -->
+    <div class="gallery-section" data-section="steelGr">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Steel Grill</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-steelGr"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Steel Gate ===== -->
+    <div class="gallery-section" data-section="steelG">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Steel Gate</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-steelG"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Fancy Grill ===== -->
+    <div class="gallery-section" data-section="fancyG">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Fancy Grill</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-fancyG"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Simple Grill ===== -->
+    <div class="gallery-section" data-section="simpleG">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Simple Grill</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-simpleG"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Septic Tank ===== -->
+    <div class="gallery-section" data-section="septic">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Septic Tank</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-septic"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Water Tank ===== -->
+    <div class="gallery-section" data-section="waterT">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Water Tank</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-waterT"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Mentha ===== -->
+    <div class="gallery-section" data-section="mentha">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Mentha</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-mentha"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Simple Gate ===== -->
+    <div class="gallery-section" data-section="simpleGa">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Simple Gate</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-simpleGa"></div>
+    </div>
+
+    <!-- ===== SUBSECTION: Laser Cutting ===== -->
+    <div class="gallery-section" data-section="laserC">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Laser Cutting</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-laserC"></div>
+    </div>
+
+     <!-- ===== SUBSECTION: Funeral Bier ===== -->
+    <div class="gallery-section" data-section="funeralb">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Funeral Bier</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-funeralb"></div>
+    </div>
+    
+
+    <!-- ===== SUBSECTION: Construction Equipment ===== -->
+    <div class="gallery-section" data-section="equipment">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon"></span>
+        <h3>Equipments</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-equipment"></div>
+    </div>
+    
+    <!-- ===== SUBSECTION: Events ===== -->
+    <div class="gallery-section" data-section="events">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon">🎉</span>
+        <h3>Events</h3>
+        <span class="count">80+ Photos</span>
+      </div>
+      <div class="gallery-grid" id="grid-events"></div>
+    </div> 
+
+
+    <!-- ===== SUBSECTION: Videos ===== -->
+    <div class="gallery-section" data-section="videos">
+      <div class="gallery-section-header">
+        <span class="gallery-section-icon">🎬</span>
+        <h3>Workshop Videos</h3>
+        <span class="count">Add your videos</span>
+      </div>
+      <div class="gallery-grid" id="grid-videos"></div>
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="btn-primary" onclick="loadMore()" id="loadMoreBtn">Load More</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow"></span>
+      <h2>Meet Our <span>Team</span></h2>
+      
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-image">
+          <img src="owner.jpg" alt="Owner" onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🔧'">
+        </div>
+        <div class="team-content">
+          <h3>Owner</h3>
+          <p>Shashikant Sharma</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-image">
+          <img src="manager.jpg" alt="Owner" onerror="this.style.display='none';this.parentElement.innerHTML='👨‍🔧'">
+        </div>
+        <div class="team-content">
+          <h3>Manager</h3>
+          <p>Bindu Kumar</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Contact <span style="color:var(--yellow)">Us</span></h2>
+      <p style="color:#bbb">Visit us or reach out — we're here to help</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <h3>Phone & Email</h3>
+        <p>+91 9934618023<br></p>
+        <p>jeetansbusiness@gmail.com<br></p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <h3>Address</h3>
+        <p>Samsa Deopura Chowk<br>Naokothi, Begusarai, Bihar</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">🕐</div>
+        <h3>Working Hours</h3>
+        <p>Saturday – Thursday<br>8:00 AM – 6:00 PM</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">⚙️</div>
+        <h3>Since</h3>
+        <p>Established in <strong style="color:var(--yellow)">2000</strong><br>Trusted for 25+ years</p>
+      </div>
+
+</section>
+<div>
+  <section style="padding:0; margin:0;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.038279271938!2d86.24508209999999!3d25.5371018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f201ef3842b24d%3A0x9d2c43a9f36f9763!2sJeetan%20Work%20Shop!5e0!3m2!1sen!2sin!4v1782553291070!5m2!1sen!2sin"
+      width="100%"
+      height="450"
+      style="border:0; display:block;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+  </section>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  
+  <p>© 2026 Jeetan Work Shop (JWS) · All Rights Reserved · Samsa Deopura Chowk, Begusarai</p>
+  <p style="margin-top:6px;font-size:11px;color:#555;">Designed with ❤️ for JWS</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+/* ===== GALLERY DATA STRUCTURE =====
+   Replace placeholder URLs with your actual image paths.
+   Format:  { src: 'your-image.jpg', caption: 'Description', type: 'image' }
+   For videos: { src: 'your-video.mp4', thumb: 'thumb.jpg', caption: 'Description', type: 'video' }
+*/
+
+const galleryData = {
+  workshop: [
+    // Add your actual repair images here like: { src: 'repairs/img1.jpg', caption: 'Engine Repair', type: 'image' }
+    ...Array.from({length:4}, (_,i) => ({
+      src: `workshop/workshop (${i+1}).jpg`,
+      caption: `Workshop #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  iron: [
+    ...Array.from({length:50}, (_,i) => ({
+      src: `iron/iron (${i+1}).jpg`,
+      caption: `Iron Work #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  steel: [
+    ...Array.from({length:50}, (_,i) => ({
+      src: `steel/steel (${i+1}).jpg`,
+      caption: `Steel Work #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  glass: [
+    ...Array.from({length:27}, (_,i) => ({
+      src: `glass/glass (${i+1}).jpg`,
+      caption: `Glass Work #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  aluminium: [
+    ...Array.from({length:125}, (_,i) => ({
+      src: `aluminium/aluminium (${i+1}).jpg`,
+      caption: `Aluminium Work #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  hardware: [
+    ...Array.from({length:157}, (_,i) => ({
+      src: `hardware/hardware (${i+1}).jpg`,
+      caption: `Hardware #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  mixture: [
+    ...Array.from({length:53}, (_,i) => ({
+      src: `mixture/mixture (${i+1}).jpg`,
+      caption: `Mixture Machine #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  thresher: [
+    ...Array.from({length:19}, (_,i) => ({
+      src: `thresher/thresher (${i+1}).jpg`,
+      caption: `Mixture Machine #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  
+  letter: [
+    ...Array.from({length:31}, (_,i) => ({
+      src: `letter/letter (${i+1}).jpg`,
+      caption: `Letter Work #${i+1}`,
+      type: 'image'
+    }))
+  ],
+  
+  dala: [
+    ...Array.from({length:30}, (_,i) => ({
+      src: `dala/dala (${i+1}).jpg`,
+      caption: `Dala(Trailor) #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  djframe: [
+    ...Array.from({length:17}, (_,i) => ({
+      src: `djframe/djframe (${i+1}).jpg`,
+      caption: `Mixture Machine #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  fancy: [
+    ...Array.from({length:262}, (_,i) => ({
+      src: `fancy/fancy (${i+1}).jpg`,
+      caption: `Fancy Gate #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  pickup: [
+    ...Array.from({length:22}, (_,i) => ({
+      src: `pickup/pickup (${i+1}).jpg`,
+      caption: `Pickup #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  steelR: [
+    ...Array.from({length:177}, (_,i) => ({
+      src: `steelR/steelR (${i+1}).jpg`,
+      caption: `Steel Railing #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  steelGr: [
+    ...Array.from({length:32}, (_,i) => ({
+      src: `steelGr/steelGr (${i+1}).jpg`,
+      caption: `Steel Window #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  steelG: [
+    ...Array.from({length:75}, (_,i) => ({
+      src: `steelG/steelG (${i+1}).jpg`,
+      caption: `Steel Gate #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  fancyG: [
+    ...Array.from({length:79}, (_,i) => ({
+      src: `fancyG/fancyG (${i+1}).jpg`,
+      caption: `Fancy Window #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  simpleG: [
+    ...Array.from({length:46}, (_,i) => ({
+      src: `simpleG/simpleG (${i+1}).jpg`,
+      caption: `Simple Window #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  septic: [
+    ...Array.from({length:20}, (_,i) => ({
+      src: `septic/septic (${i+1}).jpg`,
+      caption: `Septic Tank #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  waterT: [
+    ...Array.from({length:4}, (_,i) => ({
+      src: `waterT/waterT (${i+1}).jpg`,
+      caption: `Water Tank #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  mentha: [
+    ...Array.from({length:10}, (_,i) => ({
+      src: `mentha/mentha (${i+1}).jpg`,
+      caption: `Mentha #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  simpleGa: [
+    ...Array.from({length:20}, (_,i) => ({
+      src: `simpleGa/simpleGa (${i+1}).jpg`,
+      caption: `Plane Gate #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  laserC: [
+    ...Array.from({length:35}, (_,i) => ({
+      src: `laserC/laserC (${i+1}).jpg`,
+      caption: `Laser Cutting #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+    funeralb: [
+    ...Array.from({length:12}, (_,i) => ({
+      src: `funeralb/funeralb (${i+1}).jpg`,
+      caption: `Laser Cutting #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  equipment: [
+    ...Array.from({length:21}, (_,i) => ({
+      src: `equipment/equipment (${i+1}).jpg`,
+      caption: `Equipment #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+  events: [
+    ...Array.from({length:3}, (_,i) => ({
+      src: `events/events (${i+1}).jpg`,
+      caption: `Events #${i+1}`,
+      type: 'image'
+    }))
+  ],
+
+
+  videos: [
+    {
+      url: "https://youtube.com/shorts/52jeO4CvRmY?si=4A5KaHnjl91vCQ6L",
+      caption: "Workshop Video 1",
+      type: "youtube"
+    }
+  ]
+};
+
+/* Flat list for modal navigation */
+let allItems = [];
+let currentModalIndex = 0;
+const ITEMS_PER_LOAD = 12;
+let loadedCounts = { workshop:0, iron:0, steel:0, glass:0, aluminium:0, hardware:0, mixture:0, thresher:0, letter:0, dala:0, djframe:0, fancy:0, pickup:0, steelR:0, steelGr:0, steelG:0, fancyG:0, simpleG:0, septic:0, waterT:0, mentha:0, simpleGa:0, laserC:0, funeralb:0, equipment:0, events:0, videos:0 };
+
+/* ===== BUILD GALLERY ===== */
+function buildGallery() {
+  Object.keys(galleryData).forEach(section => {
+    const grid = document.getElementById('grid-' + section);
+    if (!grid) return;
+
+    const items = galleryData[section];
+    const initial = Math.min(ITEMS_PER_LOAD, items.length);
+    loadedCounts[section] = initial;
+
+    for (let i = 0; i < initial; i++) {
+      grid.appendChild(createGalleryItem(items[i], section, i));
+    }
+  });
+
+  buildAllItems();
+}
+
+function createGalleryItem(item, section, index) {
+  const div=document.createElement('div');
+  div.className='gallery-item'+((item.type==='video'||item.type==='youtube')?' video-item':'');
+  div.setAttribute('data-section',section);
+  div.setAttribute('data-index',index);
+
+  if(item.type==='youtube'){
+    let id=item.url.includes('/shorts/')?item.url.split('/shorts/')[1].split('?')[0]:
+      item.url.includes('watch?v=')?item.url.split('watch?v=')[1].split('&')[0]:
+      item.url.split('youtu.be/')[1].split('?')[0];
+    const img=document.createElement('img');
+    img.src='https://img.youtube.com/vi/'+id+'/hqdefault.jpg';
+    img.alt=item.caption;
+    div.appendChild(img);
+  }else if(item.type==='video'){
+    const vid=document.createElement('video');
+    vid.src=item.src;vid.muted=true;vid.loop=true;
+    if(item.thumb)vid.poster=item.thumb;
+    div.appendChild(vid);
+  }else{
+    const img=document.createElement('img');
+    img.src=item.src;img.alt=item.caption;img.loading='lazy';
+    div.appendChild(img);
+  }
+  const overlay=document.createElement('div');
+  overlay.className='overlay';
+  overlay.innerHTML='<div class="overlay-text">'+item.caption+'</div>';
+  div.appendChild(overlay);
+  div.onclick=()=>openModal(section,index);
+  return div;
+}
+
+/* ===== BUILD FLAT INDEX ===== */
+function buildAllItems() {
+  allItems = [];
+  Object.keys(galleryData).forEach(section => {
+    galleryData[section].forEach((item, i) => {
+      allItems.push({ ...item, section, localIndex: i, globalIndex: allItems.length });
+    });
+  });
+}
+
+/* ===== FILTER ===== */
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.gallery-section').forEach(sec => {
+    const s = sec.getAttribute('data-section');
+    if (cat === 'all' || cat === s) {
+      sec.style.display = '';
+    } else {
+      sec.style.display = 'none';
+    }
+  });
+}
+
+/* ===== LOAD MORE ===== */
+function loadMore() {
+  let added = 0;
+  Object.keys(galleryData).forEach(section => {
+    const grid = document.getElementById('grid-' + section);
+    if (!grid) return;
+    const items = galleryData[section];
+    const from = loadedCounts[section];
+    const to = Math.min(from + ITEMS_PER_LOAD, items.length);
+    for (let i = from; i < to; i++) {
+      grid.appendChild(createGalleryItem(items[i], section, i));
+      added++;
+    }
+    loadedCounts[section] = to;
+  });
+
+  const allLoaded = Object.keys(galleryData).every(s => loadedCounts[s] >= galleryData[s].length);
+  if (allLoaded) {
+    const btn = document.getElementById('loadMoreBtn');
+    btn.textContent = 'All Photos Loaded ✓';
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+  }
+}
+
+/* ===== MODAL ===== */
+function openModal(section, localIndex) {
+  const globalIdx = allItems.findIndex(i => i.section === section && i.localIndex === localIndex);
+  currentModalIndex = globalIdx >= 0 ? globalIdx : 0;
+  renderModal(currentModalIndex);
+  document.getElementById('mediaModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderModal(idx){
+ const item=allItems[idx]; if(!item)return;
+ const img=document.getElementById('modalImg');
+ const vid=document.getElementById('modalVideo');
+ const yt=document.getElementById('modalYoutube');
+ const cap=document.getElementById('modalCaption');
+ img.style.display='none';vid.style.display='none';yt.style.display='none';
+ vid.pause();vid.src='';yt.src='';
+ if(item.type==='youtube'){
+   let id=item.url.includes('/shorts/')?item.url.split('/shorts/')[1].split('?')[0]:
+    item.url.includes('watch?v=')?item.url.split('watch?v=')[1].split('&')[0]:
+    item.url.split('youtu.be/')[1].split('?')[0];
+   yt.style.display='block';
+   yt.src='https://www.youtube.com/embed/'+id+'?autoplay=1';
+ }else if(item.type==='video'){
+   vid.style.display='block';vid.src=item.src;vid.play();
+ }else{
+   img.style.display='block';img.src=item.src;img.alt=item.caption;
+ }
+ cap.textContent=item.caption;
+ currentModalIndex=idx;
+}
+
+function navigateModal(dir) {
+  const newIdx = (currentModalIndex + dir + allItems.length) % allItems.length;
+  renderModal(newIdx);
+}
+
+function closeModal() {
+  document.getElementById('mediaModal').classList.remove('active');
+  document.getElementById('modalVideo').pause();
+  document.getElementById('modalVideo').src='';
+  document.getElementById('modalYoutube').src='';
+  document.body.style.overflow='';
+}
+
+function modalBgClose(e) {
+  if (e.target === document.getElementById('mediaModal')) closeModal();
+}
+
+/* Keyboard navigation */
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('mediaModal').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') navigateModal(1);
+  if (e.key === 'ArrowLeft')  navigateModal(-1);
+  if (e.key === 'Escape')     closeModal();
+});
+
+/* ===== MOBILE NAV ===== */
+function openMobileNav()  { document.getElementById('mobileNav').classList.add('open'); }
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+/* ===== INIT ===== */
+buildGallery();
+
+</script>
+
+</body>
+</html>
